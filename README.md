@@ -1,2 +1,49 @@
 # CODSOFT
 Codsoft Java programming Internships tasks
+import java.util.Scanner;
+import java.util.Random;
+public class Main {
+
+    public static void main(String[] args)
+    {
+       numGuessing();
+    }
+    static void numGuessing()
+    {
+      Random rd=new Random();
+      int RandomNum=rd.nextInt(100);
+      int trials=5;
+
+      for(int i=0;i<trials;i++)
+        {
+            Scanner sc=new Scanner(System.in);
+            System.out.println("Guess the number: ");
+            int GuessNum=sc.nextInt();
+
+            if(GuessNum==RandomNum)
+            {
+                System.out.println("Congratulations!!! You won the game.");
+                break;
+            }
+            else if(GuessNum<(RandomNum-2))
+            {
+                System.out.println("Oops! Your guessed number is too low, please try again.");
+            }
+            else  if(GuessNum>(RandomNum+2))
+            {
+                System.out.println("Oops! Your guessed number is too high, please try again.");
+            }
+            else if(GuessNum>=(RandomNum-2) && GuessNum<=(RandomNum+2))
+            {
+                System.out.println("too closer, please try again.");
+            }
+
+            if(trials == i + 1)
+            {
+                System.out.println("Your trials ended.");
+            }
+
+        }
+    }
+
+}
