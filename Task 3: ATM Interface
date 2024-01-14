@@ -1,0 +1,91 @@
+import java.util.Scanner;
+
+class BankAccount {
+    double balance;
+    BankAccount(double initialBalance) {
+        this.balance = initialBalance;
+    }
+
+    double getBalance() {
+        return balance;
+    }
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    boolean withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+            return true;
+        } else {
+            System.out.println("Insufficient amount. Withdrawal failed.");
+            return false;
+        }
+    }
+}
+
+class ATM {
+    BankAccount userAccount;
+
+    ATM(BankAccount account) {
+        this.userAccount = account;
+    }
+
+    public void displayOptions() {
+        System.out.println("1. Withdraw");
+        System.out.println("2. Deposit");
+        System.out.println("3. Check Balance");
+        System.out.println("4. Exit");
+    }
+
+    public void option(int option) {
+        Scanner sc = new Scanner(System.in);
+        switch (option) {
+            case 1:
+                System.out.print("Enter withdrawal amount: ");
+                double withdrawAmount = sc.nextDouble();
+                if (withdrawAmount > 0) {
+                    userAccount.withdraw(withdrawAmount);
+                } else {
+                    System.out.println("Invalid withdrawal amount.");
+                }
+                break;
+            case 2:
+                System.out.print("Enter deposit amount: ");
+                double depositAmount = sc.nextDouble();
+                if (depositAmount > 0) {
+                    userAccount.deposit(depositAmount);
+                } else {
+                    System.out.println("Invalid deposit amount.");
+                }
+                break;
+            case 3:
+                System.out.println("Your balance: Rs " + userAccount.getBalance());
+                break;
+            case 4:
+                System.out.println("Exiting. Thank you!");
+                System.exit(4);
+                break;
+            default:
+                System.out.println("Invalid option. Please try again.");
+        }
+    }
+}
+
+public class Task3 {
+    public static void main(String[] args) {
+        BankAccount userAccount = new BankAccount(1000.0);
+
+        ATM atmMachine = new ATM(userAccount);
+        while (true) {
+            atmMachine.displayOptions();
+
+            System.out.print("Enter your choice: ");
+            Scanner sc = new Scanner(System.in);
+            int userChoice = sc.nextInt();
+
+            atmMachine.option(userChoice);
+        }
+    }
+}
