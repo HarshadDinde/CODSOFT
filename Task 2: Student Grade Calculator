@@ -1,0 +1,51 @@
+import java.util.Scanner;
+
+public class Task2 {
+    public static void main(String[] args) {
+       // gdCalculator();
+   // }
+
+  // public static void gdCalculator()
+   // {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the number of subjects: ");
+        int NumOfSub=sc.nextInt();
+        int Marks;
+        String Grade="";
+        int TotalMarksObtained=0;
+        for(int i=0;i<NumOfSub;i++) {
+            System.out.println("Enter the name of a subject & marks obtained: ");
+            String SubName = sc.next();
+            Marks = sc.nextInt();
+            TotalMarksObtained += Marks;
+        }
+        System.out.println("Total Marks Obtained = "+TotalMarksObtained);
+        int AvrgPercentage=(TotalMarksObtained/NumOfSub);
+        System.out.println("Average Percentage = "+AvrgPercentage);
+
+        if(AvrgPercentage>85)
+        {
+           Grade="A";
+        }
+        else if(AvrgPercentage>70 && AvrgPercentage<=85 )
+        {
+           Grade="B";
+        }
+        else if(AvrgPercentage>55 && AvrgPercentage<=70 )
+        {
+            Grade="C";
+        }
+        else if(AvrgPercentage>40 && AvrgPercentage<=55)
+        {
+            Grade="D";
+        }
+        else if(AvrgPercentage<35)
+        {
+            Grade="F";
+        }
+        System.out.println("Grade: "+Grade);
+
+
+    }
+
+}
